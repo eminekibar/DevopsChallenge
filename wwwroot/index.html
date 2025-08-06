@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px 0 rgba(60,72,89,0.10);
+      padding: 38px 38px 26px 38px;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    label {
+      font-weight: 600;
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+    input[type="text"] {
+      padding: 10px 14px;
+      border-radius: 9px;
+      border: 1.5px solid #d1d9e6;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 4px;
+      transition: border-color 0.2s;
+      width: 200px;
+    }
+    input[type="text"]:focus {
+      border-color: #5e72e4;
+    }
+    button {
+      background: linear-gradient(90deg, #5e72e4 0%, #825ee4 100%);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 6px;
+      box-shadow: 0 2px 6px 0 rgba(60,72,89,0.07);
+    }
+    button:hover {
+      background: linear-gradient(90deg, #4a5fd2 0%, #6d49be 100%);
+      transform: translateY(-1px) scale(1.02);
+    }
+    #sonuc {
+      min-height: 28px;
+      margin-top: 14px;
+      color: #364fc7;
+      font-size: 17px;
+      text-align: center;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+  </style>
+</head>
+<body>
+        <div class="container">
+    <label for="isim">İsim:</label>
+    <input type="text" id="isim" placeholder="">
+    <button onclick="verileriGetir()">Mesajı Göster</button>
+    <div id="sonuc"></div>
+  </div>
+<script>
+    async function verileriGetir() {
+        const isim = document.getElementById("isim").value.trim();
+try{
+const helloRes = await fetch(`http://localhost:11130/api/Hello?YourName=${isim}`);
+        const helloData = await helloRes.json();
+        sonuc.innerHTML = helloData;;
+}
+catch (err){
+sonuc.innerHTML = "hata";
+        console.error(err);
+}}
+</script>
+</body>
