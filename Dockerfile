@@ -8,5 +8,5 @@ RUN dotnet publish WebApplication2.csproj -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
-EXPOSE 5000
+EXPOSE 11130
 ENTRYPOINT ["dotnet", "WebApplication2.dll"]
