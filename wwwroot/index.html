@@ -63,19 +63,19 @@
 
 </head>
 <body>
-        <div class="container">
+    <div class="container">
     <label for="isim">İsim:</label>
     <input type="text" id="isim" placeholder="">
     <button onclick="verileriGetir()">Mesajı Göster</button>
     <div id="sonuc"></div>
-  </div>
+    </div>
 <script>
     async function verileriGetir() {
         const isim = document.getElementById("isim").value.trim();
 try{
 const helloRes = await fetch(`http://localhost:52369/api/Hello?YourName=${isim}`);
         const helloData = await helloRes.json();
-        sonuc.innerHTML = helloData;;
+        sonuc.innerHTML = helloData;
 }
 catch (err){
 sonuc.innerHTML = "hata";
