@@ -8,9 +8,8 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     // aşağıdaki satır environment variable olarak portu belirler
     WebRootPath = "wwwroot"
 });
-// ...
-builder.WebHost.UseUrls("http://*:11130");
 
+builder.WebHost.UseUrls("http://*:11130");
 
 // Add services to the container.
 
