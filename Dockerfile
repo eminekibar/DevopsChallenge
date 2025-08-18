@@ -1,18 +1,10 @@
-# ----- Build (SDK) -----
+# 1. Build aşaması (SDK ile derleme)
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
-# 1) Sadece csproj'u kopyala ve restore et (cache için)
-COPY WebApplication2.csproj ./
-RUN dotnet restore WebApplication2.csproj
-
-# 2) Şimdi tüm kaynakları kopyala
 COPY . .
+RUN dotnet publish WebApplication2.csproj -c Release -o /app/publish
 
-# 3) Publish: restore zaten yapıldı
-RUN dotnet publish WebApplication2.csproj -c Release -o /app/publish --no-restore
-
-# ----- Runtime (ASP.NET) -----
+# 2. Çalıştırma aşaması (daha küçük runtime imajı)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
