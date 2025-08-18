@@ -1,0 +1,21 @@
+# Build çıktıları
+bin/
+obj/
+
+# VCS
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Log/Docs/Diğer
+*.log
+*.md
+
+# Concourse dosyaları (repo içindeyse)
+concourse/
+docker-compose.yml
+pipeline.yml
+credentials.yml
