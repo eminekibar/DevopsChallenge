@@ -6,8 +6,8 @@ WORKDIR /src
 COPY . .
 
 # Backend ve frontend aynı publish klasörüne çıkacak
-RUN dotnet publish backend-repo/backend.csproj -c Release -o /app/publish
-RUN dotnet publish frontend-repo/frontend.csproj -c Release -o /app/publish
+RUN dotnet publish backend/backend.csproj -c Release -o /app/publish
+RUN dotnet publish frontend/frontend.csproj -c Release -o /app/publish
 
 # 2. Çalıştırma aşaması
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
