@@ -8,10 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (with submodules)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0      # tam checkout, bazı git metaverileri için iyi
+          fetch-depth: 0          # tam geçmiş
+          submodules: true        # backend-repo / frontend-repo submodule ise şart
 
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -29,8 +30,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile      # Dockerfile kökteyse böyle; değilse yolu güncelle
           push: true
           tags: eminekibar/devopschallenge-sim:latest
-          # bazı ortamlarda git/provenance sorun çıkarır; gerekirse alttakini aç
+          # bazı ortamlarda gerekli olabilir:
           # provenance: false
